@@ -2,7 +2,10 @@ def validate_board(board):
     # Check board size
     if len(board) != 6 or len(board[0]) != 7:
         return False, "Board must be 6 rows by 7 columns"
-
+    
+    if all(cell == 0 for row in board for cell in row):
+        return False, "The board is empty. New game ready. Blue goes first!"
+    
     # Count pieces
     blue_count = sum(row.count(1) for row in board)
     red_count = sum(row.count(2) for row in board)
